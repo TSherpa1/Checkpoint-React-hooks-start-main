@@ -2638,6 +2638,11 @@ var Root = function Root() {
       loading = _React$useState4[0],
       setLoading = _React$useState4[1];
 
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(false),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      error = _React$useState6[0],
+      setError = _React$useState6[1];
+
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
     setTimeout(function () {
       getPets();
@@ -2651,34 +2656,40 @@ var Root = function Root() {
 
   function _getPets() {
     _getPets = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var _yield$axios$get, data;
-
+      var res;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default().get('/api/pets');
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().get('/api/pes');
 
-            case 2:
-              _yield$axios$get = _context.sent;
-              data = _yield$axios$get.data;
+            case 3:
+              res = _context.sent;
               //console.log(data);
-              setPetList(data);
-              setLoading(false); //console.log(petList);
-              // console.log('getPets');
+              setPetList(res.data);
+              setLoading(false);
+              _context.next = 12;
+              break;
 
-            case 6:
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              setError(true);
+              setLoading(false);
+
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[0, 8]]);
     }));
     return _getPets.apply(this, arguments);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Adoption Center"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, loading ? 'Loading...' : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PetList__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Adoption Center"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, error ? 'Error loading data!' : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, loading ? 'Loading...' : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PetList__WEBPACK_IMPORTED_MODULE_1__["default"], {
     pets: petList
   }));
 };

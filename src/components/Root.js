@@ -9,6 +9,7 @@ import axios from 'axios';
 const Root = () => {
   const [petList, setPetList] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -17,10 +18,15 @@ const Root = () => {
   }, []);
 
   async function getPets() {
-    const { data } = await axios.get('/api/pets');
-    //console.log(data);
-    setPetList(data);
-    setLoading(false);
+    try {
+      const res = await axios.get('/api/pes');
+      //console.log(data);
+      setPetList(res.data);
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+    }
     //console.log(petList);
     // console.log('getPets');
   }
@@ -31,6 +37,7 @@ const Root = () => {
     <>
       <h1>Adoption Center</h1>
       {/* <h1>{petList.map((pet) => pet.name)}</h1> */}
+      <h2>{error ? 'Error loading data!' : ''}</h2>
       <h3>{loading ? 'Loading...' : ''}</h3>
       <PetList pets={petList} />
     </>
