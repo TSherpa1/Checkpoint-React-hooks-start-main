@@ -14,12 +14,12 @@ const Root = () => {
   React.useEffect(() => {
     setTimeout(() => {
       getPets();
-    }, 3000);
+    }, 2000);
   }, []);
 
   async function getPets() {
     try {
-      const res = await axios.get('/api/pes');
+      const res = await axios.get('/api/pets');
       //console.log(data);
       setPetList(res.data);
       setLoading(false);

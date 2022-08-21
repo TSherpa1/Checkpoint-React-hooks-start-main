@@ -14,7 +14,7 @@ const cody = {
 function PetList(props) {
   //issue with setting state to props.pets with real data, props.pets is equal to the data, but list is just an empty array
   //const [list, setList] = React.useState(props.pets);
-  const [option, setOption] = React.useState('all');
+  const [option, setOption] = React.useState('All');
   //const [initialData, setInitialData] = React.useState([]);
 
   //console.log('props.pets:', props.pets);
@@ -60,21 +60,24 @@ function PetList(props) {
     setOption(event.target.value);
   }
   function filterList() {
-    if (option === 'all') {
+    if (option === 'All') {
       return props.pets;
     } else {
       let filteredList = props.pets.filter((pet) => {
+        console.log(pet);
         return `${pet.species}s` === option;
       });
+      //console.log(filteredList);
+      console.log(option);
       return filteredList;
     }
   }
   return (
     <>
       <select name="species" value={option} onChange={handleChange}>
-        <option value="all">All</option>
-        <option value="cats">Cats</option>
-        <option value="dogs">Dogs</option>
+        <option value="All">All</option>
+        <option value="Cats">Cats</option>
+        <option value="Dogs">Dogs</option>
       </select>
       <div className="pet-list">
         {filterList().map((pet) => (

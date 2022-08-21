@@ -2504,7 +2504,7 @@ var cody = {
 function PetList(props) {
   //issue with setting state to props.pets with real data, props.pets is equal to the data, but list is just an empty array
   //const [list, setList] = React.useState(props.pets);
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState('all'),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState('All'),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       option = _React$useState2[0],
       setOption = _React$useState2[1]; //const [initialData, setInitialData] = React.useState([]);
@@ -2549,12 +2549,15 @@ function PetList(props) {
   }
 
   function filterList() {
-    if (option === 'all') {
+    if (option === 'All') {
       return props.pets;
     } else {
       var filteredList = props.pets.filter(function (pet) {
+        console.log(pet);
         return "".concat(pet.species, "s") === option;
-      });
+      }); //console.log(filteredList);
+
+      console.log(option);
       return filteredList;
     }
   }
@@ -2564,11 +2567,11 @@ function PetList(props) {
     value: option,
     onChange: handleChange
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-    value: "all"
+    value: "All"
   }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-    value: "cats"
+    value: "Cats"
   }, "Cats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-    value: "dogs"
+    value: "Dogs"
   }, "Dogs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "pet-list"
   }, filterList().map(function (pet) {
@@ -2646,7 +2649,7 @@ var Root = function Root() {
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
     setTimeout(function () {
       getPets();
-    }, 3000);
+    }, 2000);
   }, []);
 
   function getPets() {
@@ -2663,7 +2666,7 @@ var Root = function Root() {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default().get('/api/pes');
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().get('/api/pets');
 
             case 3:
               res = _context.sent;
