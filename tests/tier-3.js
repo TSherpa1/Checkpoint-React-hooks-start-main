@@ -30,7 +30,7 @@ const getRequests = () => mockAxios.history.get;
 describe('Tier 3: Root component', () => {
   afterEach(() => mockAxios.reset());
 
-  xit('fetches data from /api/pets once after Root first mounts', async () => {
+  it('fetches data from /api/pets once after Root first mounts', async () => {
     expect(getRequests()).to.have.lengthOf(0);
 
     mount(<Root />);
@@ -42,7 +42,7 @@ describe('Tier 3: Root component', () => {
     });
   });
 
-  xit('renders PetList with data retrieved from /api/pets', async () => {
+  it('renders PetList with data retrieved from /api/pets', async () => {
     const samplePets = [
       {
         id: 1,
